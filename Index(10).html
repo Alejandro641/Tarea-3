@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>Mi Segunda Calculadora</title>
+    <script type="text/javascript">
+        var pantalla = "0";
+        var pantallaN = "si"; //Si o No
+        var punto = "no"; //Si o No
+        var Nespera = 0;
+        var operacionP = "";
+        var solucion = "";
+
+        function ingresarnumero(x) {    
+            if (x != ".") {
+
+                if (pantalla == "0" || pantallaN == "si") {
+                    document.Calculadora.txtboxnros.value = x;
+                    pantalla = x;
+                }
+                else if (x != ".") {
+                    document.Calculadora.txtboxnros.value += x;
+                    pantalla += x;
+                }
+            }
+
+            if (x == "." && punto == "no" && pantalla == "0") {
+                document.Calculadora.txtboxnros.value = "0.";
+                pantalla = x;
+                punto = "si";
+            }
+            else if (x == "." && punto == "no") {
+
+                document.Calculadora.txtboxnros.value += x;
+                pantalla += x;
+                punto = "si";
+            }
+            else if (x == "." && punto == "si") {
+
+            }
+            pantallaN = "no";
+        }
+
+        function ingresaoperacion(y) {
+            if (operacionP == "") {
+
+                Nespera = document.Calculadora.txtboxnros.value;
+                document.Calculadora.txtboxnros.value += y;
+                operacionP = y;
+                pantallaN = "no";
+                pantalla = "";
+                punto = "no";
+                _
+            }
+
+        }
+
+        function resultado() {
+
+            if (operacionP != "") {
+                solucion = Nespera + operacionP + pantalla;
+                document.Calculadora.txtboxnros.value = eval(solucion);
+                numpantalla = eval(solucion);
+                pantallaN = "si";
+                operacionP = "";
+                punto = "no";
+
+            }
+
+        }
+
+        function limpiar() {
+
+            pantalla = "0";
+            pantallaN = "si";
+            punto = "no";
+            Nespera = 0;
+            operacionP = "";
+            solucion = "";
+            document.Calculadora.txtboxnros.value = "0";
+        }
+    </script>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <center>
+
+        <form name="Calculadora">
+
+            <table border="3">
+
+                <tr>
+                    <td colspan="5">
+                        <input type="text" name="txtboxnros" value="0" disabled>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="C" onclick="limpiar()"></td>
+                    <td><input type="button" value="%" onclick="ingresaoperacion(this.value)"></td>
+                    <td><input type="button" value="/ " onclick="ingresaoperacion(this.value)"></td>   
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="8" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="9" onclick="ingresarnumero(this.value)"></td> 
+                    <td><input type="button" value="*" onclick="ingresaoperacion(this.value)"></td>
+                </tr>
+                   
+                <tr>
+                    <td><input type="button" value="4" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="5" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="6" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="-" onclick="ingresaoperacion(this.value)"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="1" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="2" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="3" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value="+" onclick="ingresaoperacion(this.value)"></td> 
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="0" onclick="ingresarnumero(this.value)"></td>
+                    <td><input type="button" value=". " onclick="ingresarnumero(this.value)"></td>
+                    <td colspan="2"><input type="button" value="      =      " onclick="resultado()"></td>
+                </tr>
+
+            </table>
+        </form>
+    </center>
+</body>
+
+</html>
